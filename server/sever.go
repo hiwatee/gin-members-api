@@ -2,7 +2,9 @@ package server
 
 import (
 	"members/controllers"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -20,16 +22,42 @@ func Init() {
 func router() *gin.Engine {
 	r := gin.Default()
 
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{
+			"http://localhost:8000",
+			"http://127.0.0.1:8000",
+			"http://0.0.0.0:8000",
+		},
+		AllowMethods: []string{
+			"HEAD",
+			"POST",
+			"GET",
+			"OPTIONS",
+			"PUT",
+			"DELETE",
+		},
+		AllowHeaders: []string{
+			"Access-Control-Allow-Origin",
+			"Access-Control-Allow-Credentials",
+			"Access-Control-Allow-Headers",
+			"Content-Type",
+			"Content-Length",
+			"Accept-Encoding",
+			"Authorization",
+		},
+		MaxAge:           24 * time.Hour,
+		AllowCredentials: true,
+	}))
+
 	v1 := r.Group("/api/v1")
 	{
 		users := v1.Group("/users")
 		{
-			ctrl := controllers.UserController{}
-			users.GET("", ctrl.Index)
-			users.POST("", ctrl.Create)
-			users.GET("/:id", ctrl.Show)
-			users.PUT("/:id", ctrl.Update)
-			users.DELETE("/:id", ctrl.Delete)
+			users.GET("", controllers.UserController{}.Index)
+			users.POST("", controllers.UserController{}.Create)
+			users.GET("/:id", controllers.UserController{}.Show)
+			users.PUT("/:id", controllers.UserController{}.Update)
+			users.DELETE("/:id", controllers.UserController{}.Delete)
 		}
 	}
 

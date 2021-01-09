@@ -19,3 +19,6 @@ main
 #datbase
 localhost.sql
 db_data
+
+#Mac
+.DS_Store
