@@ -20,19 +20,38 @@ var doc = `{
         "title": "{{.Title}}",
         "termsOfService": "仕様書使用する際の注意事項",
         "contact": {
-            "name": "APIサポーター",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
+            "name": "tochika.biz@gmial.com",
+            "url": "https://github.com/hiwatee",
+            "email": "tochika.biz@gmial.com"
         },
         "license": {
-            "name": "ライセンス(必須)",
+            "name": "apache2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/users": {
+            "get": {
+                "description": "ユーザー一覧取得API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/repository.UserRepository"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "repository.UserRepository": {
+            "type": "object"
+        }
+    }
 }`
 
 type swaggerInfo struct {
@@ -47,11 +66,11 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "バージョン(1.0)",
-	Host:        "localhost:8080",
-	BasePath:    "/",
+	Host:        "localhost:8000",
+	BasePath:    "/api/v1",
 	Schemes:     []string{},
 	Title:       "members-api",
-	Description: "仕様書に関する内容説明",
+	Description: "メンバーズ用API",
 }
 
 type s struct{}

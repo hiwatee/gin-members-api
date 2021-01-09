@@ -13,6 +13,9 @@ import (
 type UserController struct{}
 
 // Index action: GET /users
+// @description ユーザー一覧取得API
+// @Success 200 {object} repository.UserRepository
+// @router /users [get]
 func (pc UserController) Index(c *gin.Context) {
 	var u repository.UserRepository
 	p, err := u.GetAll()

@@ -13,8 +13,9 @@ WORKDIR /go/src
 RUN go get -u github.com/gin-gonic/gin && \
     go get github.com/jinzhu/gorm && \
     go get github.com/jinzhu/gorm/dialects/postgres && \
-    go get -u github.com/swaggo/swag/cmd/swag
-
+    go get -u github.com/swaggo/swag/cmd/swag && \
+    go get -u github.com/swaggo/gin-swagger && \
+    go get -u github.com/swaggo/files
 # install realize
 RUN GO111MODULE=off go get github.com/oxequa/realize
 

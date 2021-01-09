@@ -1,16 +1,27 @@
-basePath: /
-host: localhost:8080
+basePath: /api/v1
+definitions:
+  repository.UserRepository:
+    type: object
+host: localhost:8000
 info:
   contact:
-    email: support@swagger.io
-    name: APIサポーター
-    url: http://www.swagger.io/support
-  description: 仕様書に関する内容説明
+    email: tochika.biz@gmial.com
+    name: tochika.biz@gmial.com
+    url: https://github.com/hiwatee
+  description: メンバーズ用API
   license:
-    name: ライセンス(必須)
+    name: apache2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: 仕様書使用する際の注意事項
   title: members-api
   version: バージョン(1.0)
-paths: {}
+paths:
+  /users:
+    get:
+      description: ユーザー一覧取得API
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/repository.UserRepository'
 swagger: "2.0"

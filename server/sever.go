@@ -4,6 +4,12 @@ import (
 	"members/controllers"
 
 	"github.com/gin-gonic/gin"
+
+	// docs ...
+	_ "members/docs"
+
+	ginSwagger "github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 // Init is initialize server
@@ -24,6 +30,8 @@ func router() *gin.Engine {
 		u.PUT("/:id", ctrl.Update)
 		u.DELETE("/:id", ctrl.Delete)
 	}
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return r
 }
