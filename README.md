@@ -9,20 +9,20 @@ gin: 1.15
 
 ## 以下の機能の検証用として作成
 ### 環境構築
-- Dockerでの起動
-- Database接続
-- 自動コンパイル
+- [x]Dockerでの起動
+- [x]Database接続
+- [x]自動コンパイル
 ### ORM( gorm )
-- Migration
-- CRUDのORMの確認
+- [x]Migration
+- [x]CRUDのORMの確認
 ### Swagger
-- Swagger生成
+- [x]Swagger生成
 ### ネットワーク設定
-- CORS対策
+- [x]CORS対策
 ### 実装方法
-- OAuth2を利用したログイン機能
-- 外部ストレージの利用
-- 外部APIを利用したメールの送信
+- [ ]OAuth2を利用したログイン機能
+- [ ]外部ストレージの利用
+- [ ]外部APIを利用したメールの送信
 ### テスト
-- ユニットテスト
-- APIリクエストテスト
+- [ ]ユニットテスト
+- [ ]APIリクエストテスト
