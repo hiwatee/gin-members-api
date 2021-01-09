@@ -12,7 +12,8 @@ WORKDIR /go/src
 # install goa
 RUN go get -u github.com/gin-gonic/gin && \
     go get github.com/jinzhu/gorm && \
-    go get github.com/jinzhu/gorm/dialects/postgres
+    go get github.com/jinzhu/gorm/dialects/postgres && \
+    go get -u github.com/swaggo/swag/cmd/swag
 
 # install realize
 RUN GO111MODULE=off go get github.com/oxequa/realize

@@ -10,12 +10,14 @@ services:
     tty: true
     depends_on:
       - 'db'
+    environment:
+      PORT: "8000"
   swagger-ui:
     image: swaggerapi/swagger-ui
     ports:
       - "8002:8080"
     volumes:
-      - ./gen/http/openapi.yaml:/openapi.yaml
+      - ./docs/swagger.yaml:/openapi.yaml
     environment:
       SWAGGER_JSON: /openapi.yaml
   db:
