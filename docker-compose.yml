@@ -12,14 +12,6 @@ services:
       - 'db'
     environment:
       PORT: "8000"
-  swagger-ui:
-    image: swaggerapi/swagger-ui
-    ports:
-      - "8002:8080"
-    volumes:
-      - ./docs/swagger.yaml:/openapi.yaml
-    environment:
-      SWAGGER_JSON: /openapi.yaml
   db:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin

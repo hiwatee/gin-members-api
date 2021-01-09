@@ -1,4 +1,4 @@
 #!/bin/bash
 set -eu
 
-realize start
+realize start --run

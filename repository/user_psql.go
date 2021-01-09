@@ -7,18 +7,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Service procides user's behavior
+// UserRepository ...
 type UserRepository struct{}
 
 // User is alias of entity.User struct
 type User models.User
 
+// UserProfile ...
 type UserProfile struct {
-	Email string
+	Email string `gorm:"size(128)" json:"email"`
 }
 
 // GetAll is get all User
-func (_ UserRepository) GetAll() ([]UserProfile, error) {
+func (user UserRepository) GetAll() ([]UserProfile, error) {
 	db := db.GetDB()
 	var u []UserProfile
 	if err := db.Table("users").Select("id, email").Scan(&u).Error; err != nil {
@@ -28,7 +29,7 @@ func (_ UserRepository) GetAll() ([]UserProfile, error) {
 }
 
 // CreateModel is create User model
-func (_ UserRepository) CreateModel(c *gin.Context) (User, error) {
+func (user UserRepository) CreateModel(c *gin.Context) (User, error) {
 	db := db.GetDB()
 	var u User
 	if err := c.BindJSON(&u); err != nil {
@@ -41,7 +42,7 @@ func (_ UserRepository) CreateModel(c *gin.Context) (User, error) {
 }
 
 // GetByID is get a User by ID
-func (_ UserRepository) GetByID(id int) (models.User, error) {
+func (user UserRepository) GetByID(id int) (models.User, error) {
 	db := db.GetDB()
 	var u models.User
 	if err := db.Where("id = ?", id).First(&u).Error; err != nil {
@@ -51,7 +52,7 @@ func (_ UserRepository) GetByID(id int) (models.User, error) {
 }
 
 // UpdateByID is update a User
-func (_ UserRepository) UpdateByID(id int, c *gin.Context) (models.User, error) {
+func (user UserRepository) UpdateByID(id int, c *gin.Context) (models.User, error) {
 	db := db.GetDB()
 	var u models.User
 	if err := db.Where("id = ?", id).First(&u).Error; err != nil {
@@ -67,7 +68,7 @@ func (_ UserRepository) UpdateByID(id int, c *gin.Context) (models.User, error) 
 }
 
 // DeleteByID is delete a User by ID
-func (_ UserRepository) DeleteByID(id int) error {
+func (user UserRepository) DeleteByID(id int) error {
 	db := db.GetDB()
 	var u User
 
