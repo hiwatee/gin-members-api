@@ -8,7 +8,7 @@ schema:
   commands: 
     install:
       status: true
-      method: go build -o main
+      method: swag init && go build -o main
     run:
       status: true
       method: ./main
