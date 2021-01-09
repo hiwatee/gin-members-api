@@ -64,6 +64,9 @@ var doc = `{
             "properties": {
                 "email": {
                     "type": "string"
+                },
+                "id": {
+                    "type": "integer"
                 }
             }
         }

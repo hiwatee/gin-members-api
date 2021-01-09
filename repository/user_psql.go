@@ -15,6 +15,7 @@ type User models.User
 
 // UserProfile ...
 type UserProfile struct {
+	ID    uint   `json:"id"`
 	Email string `gorm:"size(128)" json:"email"`
 }
 
