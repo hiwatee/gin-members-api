@@ -1,1 +1,1 @@
-# gin-members-api
+# gin-members
