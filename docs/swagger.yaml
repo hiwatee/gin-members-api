@@ -1,6 +1,9 @@
 basePath: /api/v1
 definitions:
-  repository.UserRepository:
+  repository.UserProfile:
+    properties:
+      email:
+        type: string
     type: object
 host: localhost:8000
 info:
@@ -23,12 +26,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/repository.UserRepository'
+            $ref: '#/definitions/repository.UserProfile'
     post:
       description: ユーザー一覧取得API
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/repository.UserRepository'
+            $ref: '#/definitions/repository.UserProfile'
 swagger: "2.0"

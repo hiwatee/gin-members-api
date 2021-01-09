@@ -14,7 +14,7 @@ type UserController struct{}
 
 // Index action: GET /users
 // @description ユーザー一覧取得API
-// @Success 200 {object} repository.UserRepository
+// @Success 200 {object} repository.UserProfile
 // @router /users [get]
 func (pc UserController) Index(c *gin.Context) {
 	var u repository.UserRepository
@@ -29,7 +29,7 @@ func (pc UserController) Index(c *gin.Context) {
 
 // Create action: Post /users
 // @description ユーザー一覧取得API
-// @Success 200 {object} repository.UserRepository
+// @Success 200 {object} repository.UserProfile
 // @router /users [post]
 func (pc UserController) Create(c *gin.Context) {
 	var u repository.UserRepository

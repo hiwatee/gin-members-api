@@ -40,7 +40,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/repository.UserRepository"
+                            "$ref": "#/definitions/repository.UserProfile"
                         }
                     }
                 }
@@ -51,7 +51,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/repository.UserRepository"
+                            "$ref": "#/definitions/repository.UserProfile"
                         }
                     }
                 }
@@ -59,8 +59,13 @@ var doc = `{
         }
     },
     "definitions": {
-        "repository.UserRepository": {
-            "type": "object"
+        "repository.UserProfile": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                }
+            }
         }
     }
 }`

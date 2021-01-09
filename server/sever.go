@@ -4,6 +4,8 @@ import (
 	"members/controllers"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 
 	// docs ...
 	_ "members/docs"
@@ -18,15 +20,19 @@ func Init() {
 func router() *gin.Engine {
 	r := gin.Default()
 
-	u := r.Group("api/v1/users")
+	v1 := r.Group("/api/v1")
 	{
-		ctrl := controllers.UserController{}
-		u.GET("", ctrl.Index)
-		u.POST("", ctrl.Create)
-		u.GET("/:id", ctrl.Show)
-		u.PUT("/:id", ctrl.Update)
-		u.DELETE("/:id", ctrl.Delete)
+		users := v1.Group("/users")
+		{
+			ctrl := controllers.UserController{}
+			users.GET("", ctrl.Index)
+			users.POST("", ctrl.Create)
+			users.GET("/:id", ctrl.Show)
+			users.PUT("/:id", ctrl.Update)
+			users.DELETE("/:id", ctrl.Delete)
+		}
 	}
 
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	return r
 }
