@@ -19,6 +19,11 @@ type UserProfile struct {
 	Email string `gorm:"size(128)" json:"email"`
 }
 
+type UserCreateRequest struct {
+	Email    string `gorm:"size(128)" json:"email"`
+	Password string `json:"password"`
+}
+
 // GetAll is get all User
 func (user UserRepository) GetAll() ([]UserProfile, error) {
 	db := db.GetDB()
