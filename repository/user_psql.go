@@ -14,7 +14,6 @@ type UserRepository struct{}
 type User models.User
 
 type UserProfile struct {
-	Id    int
 	Email string
 }
 

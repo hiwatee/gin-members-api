@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Controller is user controlller
+// UserController ...
 type UserController struct{}
 
 // Index action: GET /users
@@ -27,13 +27,13 @@ func (pc UserController) Index(c *gin.Context) {
 // Create action: POST /users
 func (pc UserController) Create(c *gin.Context) {
 	var u repository.UserRepository
-	p, err := u.CreateModel(c)
+	_, err := u.CreateModel(c)
 
 	if err != nil {
 		c.AbortWithStatus(400)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(201, p)
+		c.JSON(201, gin.H{"message": "user_created"})
 	}
 }
 
