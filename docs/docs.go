@@ -18,14 +18,14 @@ var doc = `{
     "info": {
         "description": "{{.Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "仕様書使用する際の注意事項",
+        "termsOfService": "https://github.com/hiwatee/gin-members-api",
         "contact": {
-            "name": "tochika.biz@gmial.com",
+            "name": "hiwatee",
             "url": "https://github.com/hiwatee",
-            "email": "tochika.biz@gmial.com"
+            "email": "tochika.biz@gmail.com"
         },
         "license": {
-            "name": "apache2.0",
+            "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "{{.Version}}"
@@ -35,6 +35,17 @@ var doc = `{
     "paths": {
         "/users": {
             "get": {
+                "description": "ユーザー一覧取得API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/repository.UserRepository"
+                        }
+                    }
+                }
+            },
+            "post": {
                 "description": "ユーザー一覧取得API",
                 "responses": {
                     "200": {
@@ -65,12 +76,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "バージョン(1.0)",
+	Version:     "1.0",
 	Host:        "localhost:8000",
 	BasePath:    "/api/v1",
 	Schemes:     []string{},
-	Title:       "members-api",
-	Description: "メンバーズ用API",
+	Title:       "メンバーズAPI",
+	Description: "メンバーズAPI",
 }
 
 type s struct{}

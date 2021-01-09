@@ -1,25 +1,36 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "メンバーズ用API",
-        "title": "members-api",
-        "termsOfService": "仕様書使用する際の注意事項",
+        "description": "メンバーズAPI",
+        "title": "メンバーズAPI",
+        "termsOfService": "https://github.com/hiwatee/gin-members-api",
         "contact": {
-            "name": "tochika.biz@gmial.com",
+            "name": "hiwatee",
             "url": "https://github.com/hiwatee",
-            "email": "tochika.biz@gmial.com"
+            "email": "tochika.biz@gmail.com"
         },
         "license": {
-            "name": "apache2.0",
+            "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "version": "バージョン(1.0)"
+        "version": "1.0"
     },
     "host": "localhost:8000",
     "basePath": "/api/v1",
     "paths": {
         "/users": {
             "get": {
+                "description": "ユーザー一覧取得API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/repository.UserRepository"
+                        }
+                    }
+                }
+            },
+            "post": {
                 "description": "ユーザー一覧取得API",
                 "responses": {
                     "200": {

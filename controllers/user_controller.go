@@ -27,7 +27,10 @@ func (pc UserController) Index(c *gin.Context) {
 	}
 }
 
-// Create action: POST /users
+// Create action: Post /users
+// @description ユーザー一覧取得API
+// @Success 200 {object} repository.UserRepository
+// @router /users [post]
 func (pc UserController) Create(c *gin.Context) {
 	var u repository.UserRepository
 	_, err := u.CreateModel(c)

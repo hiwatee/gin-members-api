@@ -5,19 +5,26 @@ definitions:
 host: localhost:8000
 info:
   contact:
-    email: tochika.biz@gmial.com
-    name: tochika.biz@gmial.com
+    email: tochika.biz@gmail.com
+    name: hiwatee
     url: https://github.com/hiwatee
-  description: メンバーズ用API
+  description: メンバーズAPI
   license:
-    name: apache2.0
+    name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: 仕様書使用する際の注意事項
-  title: members-api
-  version: バージョン(1.0)
+  termsOfService: https://github.com/hiwatee/gin-members-api
+  title: メンバーズAPI
+  version: "1.0"
 paths:
   /users:
     get:
+      description: ユーザー一覧取得API
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/repository.UserRepository'
+    post:
       description: ユーザー一覧取得API
       responses:
         "200":
