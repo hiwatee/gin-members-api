@@ -1,5 +1,12 @@
 basePath: /api/v1
 definitions:
+  controllers.UserResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+    type: object
   repository.UserProfile:
     properties:
       email:
@@ -35,5 +42,13 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/repository.UserProfile'
+            $ref: '#/definitions/controllers.UserResponse'
+  /users/:id:
+    get:
+      description: ユーザー詳細情報API
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.UserResponse'
 swagger: "2.0"

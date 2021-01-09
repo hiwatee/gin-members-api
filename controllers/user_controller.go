@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 
 	"members/db"
 	"members/models"
@@ -15,6 +16,14 @@ import (
 
 // UserController ...
 type UserController struct{}
+
+type UserResponse struct {
+	ID        uint      `gorm:"primaryKey" json:"id"`
+	Email     string    `gorm:"unique;size(128)" json:"email"`
+	Password  string    `gorm:"size(128)" json:"-"`
+	CreatedAt time.Time `gorm:"autoCreateTime" json:"-"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"-"`
+}
 
 // Index action: GET /users
 // @description ユーザー一覧取得API
@@ -33,7 +42,7 @@ func (pc UserController) Index(c *gin.Context) {
 
 // Create action: Post /users
 // @description ユーザー一覧取得API
-// @Success 200 {object} repository.UserProfile
+// @Success 200 {object} UserResponse
 // @router /users [post]
 func (pc UserController) Create(c *gin.Context) {
 
@@ -46,19 +55,19 @@ func (pc UserController) Create(c *gin.Context) {
 	user.Email = requestBody.Email
 	user.Password = token
 
-	// c.Request.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
-
-	// var u repository.UserRepository
 	db := db.GetDB()
 	if result := db.Create(&user); result.Error != nil {
 		c.AbortWithStatus(400)
 		c.JSON(http.StatusBadRequest, gin.H{"error": result.Error.Error()})
 	} else {
-		c.JSON(201, gin.H{"message": "user_created"})
+		c.JSON(201, UserResponse(user))
 	}
 }
 
 // Show action: Get /users/:id
+// @description ユーザー詳細情報API
+// @Success 200 {object} UserResponse
+// @router /users/:id [get]
 func (pc UserController) Show(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var u repository.UserRepository
@@ -69,7 +78,7 @@ func (pc UserController) Show(c *gin.Context) {
 		c.AbortWithStatus(400)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(200, user)
+		c.JSON(200, UserResponse(user))
 	}
 }
 

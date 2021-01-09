@@ -5,7 +5,7 @@ import "time"
 // User is user models property
 type User struct {
 	ID        uint      `gorm:"primaryKey" json:"id"`
-	Email     string    `gorm:"size(128)" json:"email"`
+	Email     string    `gorm:"unique;size(128)" json:"email"`
 	Password  string    `gorm:"size(128)" json:"password"`
 	CreatedAt time.Time `gorm:"autoCreateTime"`
 	UpdatedAt time.Time `gorm:"autoUpdateTime"`

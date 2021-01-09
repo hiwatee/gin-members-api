@@ -51,7 +51,20 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/repository.UserProfile"
+                            "$ref": "#/definitions/controllers.UserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "get": {
+                "description": "ユーザー詳細情報API",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.UserResponse"
                         }
                     }
                 }
@@ -59,6 +72,17 @@ var doc = `{
         }
     },
     "definitions": {
+        "controllers.UserResponse": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
         "repository.UserProfile": {
             "type": "object",
             "properties": {
