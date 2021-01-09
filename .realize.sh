@@ -1,0 +1,1 @@
+swag init && go build -o /go/src/main

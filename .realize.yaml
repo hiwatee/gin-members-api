@@ -4,14 +4,14 @@ settings:
     interval: 0s
 schema:
 - name: src
-  path: .
+  path: /go/src
   commands: 
     install:
       status: true
-      method: swag init && go build -o main
+      method: sh .realize.sh
     run:
       status: true
-      method: ./main
+      method: /go/src/main
   watcher:
     extensions:
     - go
