@@ -60,11 +60,21 @@
         "controllers.UserResponse": {
             "type": "object",
             "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "example": "2021-01-10T15:42:36+09:00"
+                },
                 "email": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "info@example.com"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2021-01-10T15:42:36+09:00"
                 }
             }
         }

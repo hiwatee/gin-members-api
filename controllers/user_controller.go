@@ -18,17 +18,17 @@ type UserController struct{}
 
 // UserResponse ...
 type UserResponse struct {
-	ID        uint      `gorm:"primaryKey" json:"id"`
-	Email     string    `gorm:"unique;size(128)" json:"email"`
+	ID        uint      `gorm:"primaryKey" json:"id" example:"1"`
+	Email     string    `gorm:"unique;size(128)" json:"email" example:"info@example.com"`
 	Password  string    `gorm:"size(128)" json:"-"`
-	CreatedAt time.Time `gorm:"autoCreateTime" json:"-"`
-	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"-"`
+	CreatedAt time.Time `gorm:"autoCreateTime" json:"createdAt" example:"2021-01-10T15:42:36+09:00"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt" example:"2021-01-10T15:42:36+09:00"`
 }
 
 // UserCreateRequest ...
 type UserCreateRequest struct {
-	Email    string `gorm:"unique;size(128)" json:"email"`
-	Password string `gorm:"size(128)" json:"password"`
+	Email    string `gorm:"unique;size(128)" json:"email" example:"info@example.com"`
+	Password string `gorm:"size(128)" json:"password" example:"password2021"`
 }
 
 // Index action: GET /users

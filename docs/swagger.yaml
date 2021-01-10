@@ -2,10 +2,18 @@ basePath: /api/v1
 definitions:
   controllers.UserResponse:
     properties:
+      createdAt:
+        example: "2021-01-10T15:42:36+09:00"
+        type: string
       email:
+        example: info@example.com
         type: string
       id:
+        example: 1
         type: integer
+      updatedAt:
+        example: "2021-01-10T15:42:36+09:00"
+        type: string
     type: object
 host: localhost:8000
 info:
