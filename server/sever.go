@@ -63,6 +63,11 @@ func router() *gin.Engine {
 		{
 			registration.POST("", controllers.RegistrationController{}.Create)
 		}
+
+		login := v1.Group("/login")
+		{
+			login.POST("", controllers.LoginController{}.Create)
+		}
 	}
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

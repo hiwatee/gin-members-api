@@ -1,5 +1,26 @@
 basePath: /api/v1
 definitions:
+  controllers.LoginRequest:
+    properties:
+      email:
+        example: info@example.com
+        type: string
+      password:
+        example: password2021
+        type: string
+    type: object
+  controllers.LoginSuccessResponse:
+    properties:
+      accessToken:
+        example: $$t$hisistoken
+        type: string
+      expiedAt:
+        example: "2021-01-10T15:42:36+09:00"
+        type: string
+      message:
+        example: login_success
+        type: string
+    type: object
   controllers.UserCreateRequest:
     properties:
       email:
@@ -38,6 +59,21 @@ info:
   title: メンバーズAPI
   version: "1.0"
 paths:
+  /login:
+    post:
+      description: ユーザー新規登録API
+      parameters:
+      - description: User Create Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.LoginRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.LoginSuccessResponse'
   /registration:
     post:
       description: ユーザー新規登録API

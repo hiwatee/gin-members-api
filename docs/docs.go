@@ -33,6 +33,30 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/login": {
+            "post": {
+                "description": "ユーザー新規登録API",
+                "parameters": [
+                    {
+                        "description": "User Create Request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.LoginSuccessResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/registration": {
             "post": {
                 "description": "ユーザー新規登録API",
@@ -94,6 +118,36 @@ var doc = `{
         }
     },
     "definitions": {
+        "controllers.LoginRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "info@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "password2021"
+                }
+            }
+        },
+        "controllers.LoginSuccessResponse": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "type": "string",
+                    "example": "$$t$hisistoken"
+                },
+                "expiedAt": {
+                    "type": "string",
+                    "example": "2021-01-10T15:42:36+09:00"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "login_success"
+                }
+            }
+        },
         "controllers.UserCreateRequest": {
             "type": "object",
             "properties": {
