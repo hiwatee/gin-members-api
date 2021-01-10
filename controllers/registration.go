@@ -12,7 +12,7 @@ import (
 type RegistrationController struct{}
 
 // Create action: Post /registration
-// @description ユーザー一覧取得API
+// @description ユーザー新規登録API
 // @Success 200 {object} UserResponse
 // @Param   body        body    UserCreateRequest   true        "User Create Request"
 // @router /registration [post]

@@ -35,7 +35,7 @@ var doc = `{
     "paths": {
         "/registration": {
             "post": {
-                "description": "ユーザー一覧取得API",
+                "description": "ユーザー新規登録API",
                 "parameters": [
                     {
                         "description": "User Create Request",
