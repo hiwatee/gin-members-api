@@ -27,7 +27,7 @@ type LoginSuccessResponse struct {
 // Create action: Post /registration
 // @description ユーザー新規登録API
 // @Success 200 {object} LoginSuccessResponse
-// @Success 403 {object} DefaultErrorResponse
+// @Failure 403 {object} DefaultErrorResponse
 // @Param   body        body    LoginRequest   true        "User Create Request"
 // @router /login [post]
 func (pc LoginController) Create(c *gin.Context) {
