@@ -41,7 +41,11 @@ func (pc UserController) Index(c *gin.Context) {
 		c.AbortWithStatus(404)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
-		c.JSON(200, p)
+		users := make([]UserResponse, len(p))
+		for n := range p {
+			users[n] = UserResponse(p[n])
+		}
+		c.JSON(200, users)
 	}
 }
 

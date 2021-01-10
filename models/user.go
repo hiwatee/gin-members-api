@@ -12,8 +12,8 @@ type User struct {
 	ID        uint      `gorm:"primaryKey" json:"id"`
 	Email     string    `gorm:"unique;size(128)" json:"email"`
 	Password  string    `gorm:"size(128)" json:"password"`
-	CreatedAt time.Time `gorm:"autoCreateTime"`
-	UpdatedAt time.Time `gorm:"autoUpdateTime"`
+	CreatedAt time.Time `gorm:"autoCreateTime" json:"createdAt"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 }
 
 // Profile ...
@@ -30,7 +30,7 @@ type Profile struct {
 func (user User) GetAll() ([]User, error) {
 	db := db.GetDB()
 	var u []User
-	if err := db.Table("users").Select("id, email").Scan(&u).Error; err != nil {
+	if err := db.Table("users").Select("*").Scan(&u).Error; err != nil {
 		return nil, err
 	}
 	return u, nil
