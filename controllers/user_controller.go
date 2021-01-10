@@ -16,6 +16,7 @@ import (
 // UserController ...
 type UserController struct{}
 
+// UserResponse ...
 type UserResponse struct {
 	ID        uint      `gorm:"primaryKey" json:"id"`
 	Email     string    `gorm:"unique;size(128)" json:"email"`
@@ -24,6 +25,7 @@ type UserResponse struct {
 	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"-"`
 }
 
+// UserCreateRequest ...
 type UserCreateRequest struct {
 	Email    string `gorm:"unique;size(128)" json:"email"`
 	Password string `gorm:"size(128)" json:"password"`
