@@ -18,18 +18,7 @@
     "host": "localhost:8000",
     "basePath": "/api/v1",
     "paths": {
-        "/users": {
-            "get": {
-                "description": "ユーザー一覧取得API",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controllers.UserResponse"
-                        }
-                    }
-                }
-            },
+        "/registration": {
             "post": {
                 "description": "ユーザー一覧取得API",
                 "parameters": [
@@ -43,6 +32,19 @@
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.UserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "ユーザー一覧取得API",
                 "responses": {
                     "200": {
                         "description": "OK",

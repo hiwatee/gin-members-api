@@ -38,14 +38,7 @@ info:
   title: メンバーズAPI
   version: "1.0"
 paths:
-  /users:
-    get:
-      description: ユーザー一覧取得API
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/controllers.UserResponse'
+  /registration:
     post:
       description: ユーザー一覧取得API
       parameters:
@@ -55,6 +48,14 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/controllers.UserCreateRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.UserResponse'
+  /users:
+    get:
+      description: ユーザー一覧取得API
       responses:
         "200":
           description: OK

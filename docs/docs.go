@@ -33,18 +33,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/users": {
-            "get": {
-                "description": "ユーザー一覧取得API",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controllers.UserResponse"
-                        }
-                    }
-                }
-            },
+        "/registration": {
             "post": {
                 "description": "ユーザー一覧取得API",
                 "parameters": [
@@ -58,6 +47,19 @@ var doc = `{
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.UserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "ユーザー一覧取得API",
                 "responses": {
                     "200": {
                         "description": "OK",

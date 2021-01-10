@@ -54,10 +54,14 @@ func router() *gin.Engine {
 		users := v1.Group("/users")
 		{
 			users.GET("", controllers.UserController{}.Index)
-			users.POST("", controllers.UserController{}.Create)
 			users.GET("/:id", controllers.UserController{}.Show)
 			users.PUT("/:id", controllers.UserController{}.Update)
 			users.DELETE("/:id", controllers.UserController{}.Delete)
+		}
+
+		registration := v1.Group("/registration")
+		{
+			registration.POST("", controllers.RegistrationController{}.Create)
 		}
 	}
 

@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"time"
 
-	"members/db"
 	"members/models"
 
 	"github.com/gin-gonic/gin"
@@ -43,31 +42,6 @@ func (pc UserController) Index(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	} else {
 		c.JSON(200, p)
-	}
-}
-
-// Create action: Post /users
-// @description ユーザー一覧取得API
-// @Success 200 {object} UserResponse
-// @Param   body        body    UserCreateRequest   true        "User Create Request"
-// @router /users [post]
-func (pc UserController) Create(c *gin.Context) {
-
-	var requestBody UserCreateRequest
-	c.BindJSON(&requestBody)
-	token := hashAndSalt(requestBody.Password)
-	requestBody.Password = token
-
-	var user models.User
-	user.Email = requestBody.Email
-	user.Password = token
-
-	db := db.GetDB()
-	if result := db.Create(&user); result.Error != nil {
-		c.AbortWithStatus(400)
-		c.JSON(http.StatusBadRequest, gin.H{"error": result.Error.Error()})
-	} else {
-		c.JSON(201, UserResponse(user))
 	}
 }
 
