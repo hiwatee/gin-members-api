@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"members/db"
+	"members/models"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -25,15 +27,24 @@ type LoginSuccessResponse struct {
 // Create action: Post /registration
 // @description ユーザー新規登録API
 // @Success 200 {object} LoginSuccessResponse
+// @Success 403 {object} DefaultErrorResponse
 // @Param   body        body    LoginRequest   true        "User Create Request"
 // @router /login [post]
 func (pc LoginController) Create(c *gin.Context) {
+	db := db.GetDB()
 
 	var requestBody LoginRequest
 	c.BindJSON(&requestBody)
 
-	// requestBody.Password
-	// requestBody.Email
+	email := requestBody.Email
+
+	var u models.User
+
+	if err := db.Where("email= ?", email).First(&u).Error; err != nil {
+		c.JSON(401, DefaultErrorResponse{Message: "login_failure"})
+		return
+	}
 
 	c.JSON(201, gin.H{"message": "login_success", "token": "this is acccess_token"})
+	return
 }

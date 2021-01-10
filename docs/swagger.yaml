@@ -1,5 +1,11 @@
 basePath: /api/v1
 definitions:
+  controllers.DefaultErrorResponse:
+    properties:
+      message:
+        example: error_message_is_here
+        type: string
+    type: object
   controllers.LoginRequest:
     properties:
       email:
@@ -74,6 +80,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/controllers.LoginSuccessResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/controllers.DefaultErrorResponse'
   /registration:
     post:
       description: ユーザー新規登録API

@@ -53,6 +53,12 @@ var doc = `{
                         "schema": {
                             "$ref": "#/definitions/controllers.LoginSuccessResponse"
                         }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.DefaultErrorResponse"
+                        }
                     }
                 }
             }
@@ -118,6 +124,15 @@ var doc = `{
         }
     },
     "definitions": {
+        "controllers.DefaultErrorResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "error_message_is_here"
+                }
+            }
+        },
         "controllers.LoginRequest": {
             "type": "object",
             "properties": {
