@@ -2,6 +2,7 @@ package main
 
 import (
 	"members/db"
+	"members/models"
 	"members/server"
 )
 
@@ -21,5 +22,12 @@ import (
 // @BasePath /api/v1
 func main() {
 	db.Init()
+	migration()
 	server.Init()
+}
+
+func migration() {
+	database := db.GetDB()
+	database.AutoMigrate(&models.User{})
+	database.AutoMigrate(&models.Profile{})
 }

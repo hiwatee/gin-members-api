@@ -8,7 +8,6 @@ import (
 
 	"members/db"
 	"members/models"
-	"members/repository"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -25,12 +24,17 @@ type UserResponse struct {
 	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"-"`
 }
 
+type UserCreateRequest struct {
+	Email    string `gorm:"unique;size(128)" json:"email"`
+	Password string `gorm:"size(128)" json:"password"`
+}
+
 // Index action: GET /users
 // @description ユーザー一覧取得API
-// @Success 200 {object} repository.UserProfile
+// @Success 200 {object} UserResponse
 // @router /users [get]
 func (pc UserController) Index(c *gin.Context) {
-	var u repository.UserRepository
+	var u models.User
 	p, err := u.GetAll()
 	if err != nil {
 		c.AbortWithStatus(404)
@@ -46,7 +50,7 @@ func (pc UserController) Index(c *gin.Context) {
 // @router /users [post]
 func (pc UserController) Create(c *gin.Context) {
 
-	var requestBody repository.UserCreateRequest
+	var requestBody UserCreateRequest
 	c.BindJSON(&requestBody)
 	token := hashAndSalt(requestBody.Password)
 	requestBody.Password = token
@@ -70,7 +74,7 @@ func (pc UserController) Create(c *gin.Context) {
 // @router /users/:id [get]
 func (pc UserController) Show(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var u repository.UserRepository
+	var u models.User
 	idInt, _ := strconv.Atoi(id)
 	user, err := u.GetByID(idInt)
 
@@ -85,7 +89,7 @@ func (pc UserController) Show(c *gin.Context) {
 // Update action: Put /users/:id
 func (pc UserController) Update(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var u repository.UserRepository
+	var u models.User
 	idInt, _ := strconv.Atoi(id)
 	p, err := u.UpdateByID(idInt, c)
 
@@ -100,7 +104,7 @@ func (pc UserController) Update(c *gin.Context) {
 // Delete action: DELETE /users/:id
 func (pc UserController) Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var u repository.UserRepository
+	var u models.User
 	idInt, _ := strconv.Atoi(id)
 	if err := u.DeleteByID(idInt); err != nil {
 		c.AbortWithStatus(403)

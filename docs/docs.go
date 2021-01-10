@@ -40,7 +40,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/repository.UserProfile"
+                            "$ref": "#/definitions/controllers.UserResponse"
                         }
                     }
                 }
@@ -73,17 +73,6 @@ var doc = `{
     },
     "definitions": {
         "controllers.UserResponse": {
-            "type": "object",
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                }
-            }
-        },
-        "repository.UserProfile": {
             "type": "object",
             "properties": {
                 "email": {

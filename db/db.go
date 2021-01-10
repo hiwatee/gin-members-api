@@ -1,8 +1,6 @@
 package db
 
 import (
-	"members/models"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -25,15 +23,9 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
-	autoMigration()
 }
 
 // GetDB is called in models
 func GetDB() *gorm.DB {
 	return db
-}
-
-func autoMigration() {
-	db.AutoMigrate(&models.User{})
-	db.AutoMigrate(&models.Profile{})
 }
