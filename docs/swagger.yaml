@@ -1,5 +1,14 @@
 basePath: /api/v1
 definitions:
+  controllers.UserCreateRequest:
+    properties:
+      email:
+        example: info@example.com
+        type: string
+      password:
+        example: password2021
+        type: string
+    type: object
   controllers.UserResponse:
     properties:
       createdAt:
@@ -39,14 +48,27 @@ paths:
             $ref: '#/definitions/controllers.UserResponse'
     post:
       description: ユーザー一覧取得API
+      parameters:
+      - description: User Create Request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.UserCreateRequest'
       responses:
         "200":
           description: OK
           schema:
             $ref: '#/definitions/controllers.UserResponse'
-  /users/:id:
+  /users/{id}:
     get:
       description: ユーザー詳細情報API
+      parameters:
+      - description: The key for user
+        in: path
+        name: id
+        required: true
+        type: string
       responses:
         "200":
           description: OK

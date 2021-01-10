@@ -47,6 +47,17 @@ var doc = `{
             },
             "post": {
                 "description": "ユーザー一覧取得API",
+                "parameters": [
+                    {
+                        "description": "User Create Request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.UserCreateRequest"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -57,9 +68,18 @@ var doc = `{
                 }
             }
         },
-        "/users/:id": {
+        "/users/{id}": {
             "get": {
                 "description": "ユーザー詳細情報API",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The key for user",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -72,6 +92,19 @@ var doc = `{
         }
     },
     "definitions": {
+        "controllers.UserCreateRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "info@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "password2021"
+                }
+            }
+        },
         "controllers.UserResponse": {
             "type": "object",
             "properties": {

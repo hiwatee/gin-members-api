@@ -49,6 +49,7 @@ func (pc UserController) Index(c *gin.Context) {
 // Create action: Post /users
 // @description ユーザー一覧取得API
 // @Success 200 {object} UserResponse
+// @Param   body        body    UserCreateRequest   true        "User Create Request"
 // @router /users [post]
 func (pc UserController) Create(c *gin.Context) {
 
@@ -73,7 +74,8 @@ func (pc UserController) Create(c *gin.Context) {
 // Show action: Get /users/:id
 // @description ユーザー詳細情報API
 // @Success 200 {object} UserResponse
-// @router /users/:id [get]
+// @Param	id		path 	string	true		"The key for user"
+// @router /users/{id} [get]
 func (pc UserController) Show(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var u models.User
