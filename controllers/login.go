@@ -53,7 +53,9 @@ func (pc LoginController) Create(c *gin.Context) {
 	}
 
 	token := u.CreateToken()
+	accessToken := u.CreateToken()
 	log.Print(token)
+	log.Print(accessToken)
 
 	c.JSON(201, gin.H{"message": "login_success", "token": "this is acccess_token"})
 	return

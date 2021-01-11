@@ -118,3 +118,25 @@ func (user User) CreateToken() string {
 
 	return token
 }
+
+// CreateAccessToken ...
+func (user User) CreateAccessToken() string {
+	db := db.GetDB()
+	token := service.HashAndSalt(string(rune(user.ID)))
+	expiredAt := time.Now().AddDate(0, 0, 30)
+
+	var t AccessToken
+	err := db.Where("user_id = ?", user.ID).First(&t).Error
+
+	t.Token = token
+	t.User = user
+	t.ExpiredAt = expiredAt
+
+	if err != nil {
+		db.Create(&t)
+	} else {
+		db.Save(&t)
+	}
+
+	return token
+}
