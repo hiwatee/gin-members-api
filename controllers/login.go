@@ -3,6 +3,7 @@ package controllers
 import (
 	"members/db"
 	"members/models"
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -55,7 +56,9 @@ func (pc LoginController) Create(c *gin.Context) {
 	accessToken := u.CreateAccessToken()
 
 	c.SetCookie("token", token, 60*60*24*30, "/", "", false, true)
-	c.SetCookie("access_token", accessToken, 60*60*2*30, "/", "", false, true)
+	if os.Getenv("ENV") == "development" {
+		c.SetCookie("access_token", accessToken, 60*60*2*30, "/", "", false, true)
+	}
 
 	c.JSON(201, gin.H{"message": "login_success", "token": accessToken})
 	return
