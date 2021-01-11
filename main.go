@@ -22,6 +22,10 @@ import (
 // @BasePath /api/v1
 func main() {
 	db.Init()
+
+	dbConnection, _ := db.GetDB().DB()
+	defer dbConnection.Close()
+
 	migration.AutoMigration()
 	server.Init()
 }
