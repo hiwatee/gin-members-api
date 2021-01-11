@@ -31,6 +31,7 @@ type LoginSuccessResponse struct {
 // @Failure 403 {object} DefaultErrorResponse
 // @Param   body        body    LoginRequest   true        "User Create Request"
 // @router /login [post]
+// @tags login
 func (pc LoginController) Create(c *gin.Context) {
 	db := db.GetDB()
 

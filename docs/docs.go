@@ -36,6 +36,9 @@ var doc = `{
         "/login": {
             "post": {
                 "description": "ユーザー新規登録API",
+                "tags": [
+                    "login"
+                ],
                 "parameters": [
                     {
                         "description": "User Create Request",
@@ -66,6 +69,9 @@ var doc = `{
         "/registration": {
             "post": {
                 "description": "ユーザー新規登録API",
+                "tags": [
+                    "registration"
+                ],
                 "parameters": [
                     {
                         "description": "User Create Request",

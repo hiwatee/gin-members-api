@@ -84,6 +84,8 @@ paths:
           description: Forbidden
           schema:
             $ref: '#/definitions/controllers.DefaultErrorResponse'
+      tags:
+      - login
   /registration:
     post:
       description: ユーザー新規登録API
@@ -99,6 +101,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/controllers.UserResponse'
+      tags:
+      - registration
   /users:
     get:
       description: ユーザー一覧取得API

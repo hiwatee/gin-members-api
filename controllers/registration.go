@@ -17,6 +17,7 @@ type RegistrationController struct{}
 // @Success 200 {object} UserResponse
 // @Param   body        body    UserCreateRequest   true        "User Create Request"
 // @router /registration [post]
+// @tags registration
 func (pc RegistrationController) Create(c *gin.Context) {
 
 	var requestBody UserCreateRequest
