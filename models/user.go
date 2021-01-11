@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // User is user models property
@@ -85,4 +86,12 @@ func (user User) DeleteByID(id int) error {
 	}
 
 	return nil
+}
+
+// CheckPassword ...
+func (user User) CheckPassword(password string) bool {
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
+		return false
+	}
+	return true
 }

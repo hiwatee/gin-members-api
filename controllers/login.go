@@ -37,10 +37,16 @@ func (pc LoginController) Create(c *gin.Context) {
 	c.BindJSON(&requestBody)
 
 	email := requestBody.Email
+	password := requestBody.Password
 
 	var u models.User
 
 	if err := db.Where("email= ?", email).First(&u).Error; err != nil {
+		c.JSON(401, DefaultErrorResponse{Message: "login_failure"})
+		return
+	}
+
+	if !u.CheckPassword(password) {
 		c.JSON(401, DefaultErrorResponse{Message: "login_failure"})
 		return
 	}
