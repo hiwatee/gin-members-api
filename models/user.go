@@ -99,20 +99,22 @@ func (user User) CheckPassword(password string) bool {
 
 // CreateToken ...
 func (user User) CreateToken() string {
-	// db := db.GetDB()
+	db := db.GetDB()
 	token := service.HashAndSalt(string(rune(user.ID)))
-	// expired_at := time.Now().AddDate(0, 0, 30)
+	expiredAt := time.Now().AddDate(0, 0, 30)
 
-	// t := new(Token)
-	// if err := o.QueryTable("token").Filter("User", m).One(t); err != orm.ErrNoRows {
-	// 	t.Token = token
-	// 	t.ExpiredAt = expired_at
-	// 	o.Update(t)
-	// } else {
-	// 	t.Token = token
-	// 	t.User = m
-	// 	t.ExpiredAt = expired_at
-	// 	o.Insert(t)
-	// }
+	var t Token
+	err := db.Where("user_id = ?", user.ID).First(&t).Error
+
+	t.Token = token
+	t.User = user
+	t.ExpiredAt = expiredAt
+
+	if err != nil {
+		db.Create(&t)
+	} else {
+		db.Save(&t)
+	}
+
 	return token
 }

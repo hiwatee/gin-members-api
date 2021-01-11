@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"members/db"
 	"members/models"
 	"time"
@@ -50,6 +51,9 @@ func (pc LoginController) Create(c *gin.Context) {
 		c.JSON(401, DefaultErrorResponse{Message: "login_failure"})
 		return
 	}
+
+	token := u.CreateToken()
+	log.Print(token)
 
 	c.JSON(201, gin.H{"message": "login_success", "token": "this is acccess_token"})
 	return
