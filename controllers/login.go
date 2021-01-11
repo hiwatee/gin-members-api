@@ -57,6 +57,9 @@ func (pc LoginController) Create(c *gin.Context) {
 	log.Print(token)
 	log.Print(accessToken)
 
-	c.JSON(201, gin.H{"message": "login_success", "token": "this is acccess_token"})
+	c.SetCookie("token", token, 60*60*24*30, "/", "", false, false)
+	c.SetCookie("access_token", token, 60*60*2*30, "/", "", false, false)
+
+	c.JSON(201, gin.H{"message": "login_success", "token": accessToken})
 	return
 }
