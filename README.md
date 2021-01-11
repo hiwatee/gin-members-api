@@ -15,6 +15,7 @@ gin: 1.15
 ### ORM( gorm )
 - [x]Migration
 - [x]CRUDのORMの確認
+- [ ]LIMIT,OFFSET
 ### Swagger
 - [x]Swagger生成
 ### ネットワーク設定
