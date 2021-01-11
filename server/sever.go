@@ -2,6 +2,7 @@ package server
 
 import (
 	"members/controllers"
+	"members/middleware"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -53,6 +54,7 @@ func router() *gin.Engine {
 	{
 		users := v1.Group("/users")
 		{
+			users.Use(middleware.UserAuth())
 			users.GET("", controllers.UserController{}.Index)
 			users.GET("/:id", controllers.UserController{}.Show)
 			users.PUT("/:id", controllers.UserController{}.Update)
