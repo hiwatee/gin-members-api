@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"log"
 	"members/db"
 	"members/models"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,8 +16,7 @@ func UserAuth() gin.HandlerFunc {
 		db := db.GetDB()
 		var t models.AccessToken
 
-		if err := db.Where("token = ?", token).First(&t).Error; err != nil {
-			log.Print(err.Error())
+		if err := db.Where("token = ? AND expired_at > ?", token, time.Now()).First(&t).Error; err != nil {
 			c.AbortWithStatusJSON(401, gin.H{"error": "login_failure"})
 			return
 		}
