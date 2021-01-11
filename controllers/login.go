@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"log"
 	"members/db"
 	"members/models"
 	"time"
@@ -54,8 +53,6 @@ func (pc LoginController) Create(c *gin.Context) {
 
 	token := u.CreateToken()
 	accessToken := u.CreateToken()
-	log.Print(token)
-	log.Print(accessToken)
 
 	c.SetCookie("token", token, 60*60*24*30, "/", "", false, true)
 	c.SetCookie("access_token", token, 60*60*2*30, "/", "", false, true)
