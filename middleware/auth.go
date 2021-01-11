@@ -1,15 +1,15 @@
 package middleware
 
 import (
-	"log"
-
 	"github.com/gin-gonic/gin"
 )
 
+// UserAuth ...
 func UserAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		log.Println("before logic")
+		c.AbortWithStatusJSON(401, gin.H{"error": "login_failure"})
+		return
 		c.Next()
-		log.Println("after logic")
+		// log.Println("after logic")
 	}
 }
