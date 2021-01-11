@@ -3,6 +3,7 @@ package controllers
 import (
 	"members/db"
 	"members/models"
+	"members/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,7 +21,7 @@ func (pc RegistrationController) Create(c *gin.Context) {
 
 	var requestBody UserCreateRequest
 	c.BindJSON(&requestBody)
-	token := hashAndSalt(requestBody.Password)
+	token := service.HashAndSalt(requestBody.Password)
 	requestBody.Password = token
 
 	var user models.User

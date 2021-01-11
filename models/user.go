@@ -2,6 +2,7 @@ package models
 
 import (
 	"members/db"
+	"members/service"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -94,4 +95,24 @@ func (user User) CheckPassword(password string) bool {
 		return false
 	}
 	return true
+}
+
+// CreateToken ...
+func (user User) CreateToken() string {
+	// db := db.GetDB()
+	token := service.HashAndSalt(string(rune(user.ID)))
+	// expired_at := time.Now().AddDate(0, 0, 30)
+
+	// t := new(Token)
+	// if err := o.QueryTable("token").Filter("User", m).One(t); err != orm.ErrNoRows {
+	// 	t.Token = token
+	// 	t.ExpiredAt = expired_at
+	// 	o.Update(t)
+	// } else {
+	// 	t.Token = token
+	// 	t.User = m
+	// 	t.ExpiredAt = expired_at
+	// 	o.Insert(t)
+	// }
+	return token
 }

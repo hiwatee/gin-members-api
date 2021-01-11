@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -9,7 +8,6 @@ import (
 	"members/models"
 
 	"github.com/gin-gonic/gin"
-	"golang.org/x/crypto/bcrypt"
 )
 
 // UserController ...
@@ -96,12 +94,4 @@ func (pc UserController) Delete(c *gin.Context) {
 
 	c.JSON(200, gin.H{"success": "ID" + id + "のユーザーを削除しました"})
 	return
-}
-
-func hashAndSalt(password string) string {
-	hash, err := bcrypt.GenerateFromPassword([]byte(password), 10)
-	if err != nil {
-		log.Println(err)
-	}
-	return string(hash)
 }
