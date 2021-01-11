@@ -56,7 +56,7 @@ func (pc LoginController) Create(c *gin.Context) {
 	accessToken := u.CreateAccessToken()
 
 	c.SetCookie("token", token, 60*60*24*30, "/", "", false, true)
-	if os.Getenv("ENV") == "development" {
+	if os.Getenv("GIN_MODE") != "release" {
 		c.SetCookie("access_token", accessToken, 60*60*2*30, "/", "", false, true)
 	}
 

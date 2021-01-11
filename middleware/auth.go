@@ -14,7 +14,8 @@ func UserAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
 		token := func() string {
-			if os.Getenv("ENV") == "development" {
+			// NOTE: release以外ではTokenをCookieからも取得 | swagger用の対応です
+			if os.Getenv("GIN_MODE") == "debug" {
 				t, _ := c.Cookie("access_token")
 				return t
 			}
