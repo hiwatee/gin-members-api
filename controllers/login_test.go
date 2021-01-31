@@ -9,7 +9,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestLogin(t *testing.T) {
+// TestLoginCreate ...
+func TestLoginCreate(t *testing.T) {
 	// Arrange ---
 	// p := models.User{
 	// 	ID:       1,
