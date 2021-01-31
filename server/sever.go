@@ -16,11 +16,12 @@ import (
 
 // Init is initialize server
 func Init() {
-	r := router()
+	r := Router()
 	r.Run()
 }
 
-func router() *gin.Engine {
+// Router ...
+func Router() *gin.Engine {
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
