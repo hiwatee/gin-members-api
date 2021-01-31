@@ -14,6 +14,16 @@ gin: 1.15
 
 http://127.0.0.1:8000/swagger/index.html
 
+## testing
+
+```
+go test -v ./directory
+```
+
+```
+go test -v ./...
+```
+
 ## 以下の機能の検証用として作成
 
 ### 環境構築
