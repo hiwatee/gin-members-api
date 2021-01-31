@@ -6,6 +6,13 @@ definitions:
         example: error_message_is_here
         type: string
     type: object
+  controllers.HealthCheckSuccessResponse:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
   controllers.LoginRequest:
     properties:
       email:
@@ -65,6 +72,16 @@ info:
   title: メンバーズAPI
   version: "1.0"
 paths:
+  /healthcheck:
+    get:
+      description: ヘルスチェック用API
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.HealthCheckSuccessResponse'
+      tags:
+      - healthcheck
   /login:
     post:
       description: ユーザー新規登録API

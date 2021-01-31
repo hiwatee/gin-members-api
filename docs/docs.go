@@ -33,6 +33,22 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/healthcheck": {
+            "get": {
+                "description": "ヘルスチェック用API",
+                "tags": [
+                    "healthcheck"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.HealthCheckSuccessResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "description": "ユーザー新規登録API",
@@ -136,6 +152,17 @@ var doc = `{
                 "message": {
                     "type": "string",
                     "example": "error_message_is_here"
+                }
+            }
+        },
+        "controllers.HealthCheckSuccessResponse": {
+            "type": "object",
+            "required": [
+                "message"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
                 }
             }
         },

@@ -53,6 +53,11 @@ func Router() *gin.Engine {
 
 	v1 := r.Group("/api/v1")
 	{
+		healthcheck := v1.Group("/healthcheck")
+		{
+			healthcheck.GET("", controllers.HealthCheckController{}.Index)
+		}
+
 		users := v1.Group("/users")
 		{
 			users.Use(middleware.UserAuth())
