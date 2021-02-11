@@ -1,12 +1,14 @@
 package controllers
 
 import (
+	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/stretchr/testify/assert"
+	"github.com/go-playground/assert/v2"
 )
 
 // TestLoginCreate ...
@@ -16,44 +18,19 @@ func TestLoginCreate(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 
 	t.Run("ログインが行えること", func(t *testing.T) {
-		// uid, _ := uuid.NewRandom()
-
-		// mockUserResp := &model.User{
-		// 	UID:   uid,
-		// 	Email: "bob@bob.com",
-		// 	Name:  "Bobby Bobson",
-		// }
-
-		// mockUserService := new(mocks.MockUserService)
-		// mockUserService.On("Get", mock.AnythingOfType("*gin.Context"), uid).Return(mockUserResp, nil)
-
-		// a response recorder for getting written http response
-		rr := httptest.NewRecorder()
-
-		// use a middleware to set context for test
-		// the only claims we care about in this test
-		// is the UID
-		router := gin.Default()
-		// router.Use(func(c *gin.Context) {
-		// 	c.Set("user", &model.User{
-		// 		UID: uid,
-		// 	},
-		// 	)
-		// })
-
-		request, err := http.NewRequest(http.MethodGet, "/api/v1/users/", nil)
-		assert.NoError(t, err)
-
-		router.ServeHTTP(rr, request)
-
-		// respBody, err := json.Marshal(gin.H{
-		// 	"user": mockUserResp,
-		// })
-		assert.NoError(t, err)
-
-		t.Log(rr.Code)
-		assert.Equal(t, 200, rr.Code)
-		// assert.Equal(t, respBody, rr.Body.Bytes())
-		// mockUserService.AssertExpectations(t) // assert that UserService.Get was called
+		p := LoginRequest{Email: "hogehoge@gmail.com", Password: "coca cola"}
+		byteProduct, _ := json.Marshal(p)
+		response := httptest.NewRecorder()
+		c, _ := gin.CreateTestContext(response)
+		c.Request, _ = http.NewRequest(
+			http.MethodPost,
+			"/api/v1/login/",
+			bytes.NewBuffer(byteProduct),
+		)
+		assert.Equal(t, 200, response.Code)
+		t.Log("--------------")
+		t.Log(response.Code)
+		t.Log(response.Body)
+		t.Log("--------------")
 	})
 }
