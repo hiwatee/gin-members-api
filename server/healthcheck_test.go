@@ -1,7 +1,6 @@
-package api
+package server
 
 import (
-	"members/server"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -14,7 +13,7 @@ func TestHealthCheck(t *testing.T) {
 
 	t.Run("200を返却すること", func(t *testing.T) {
 		gin.SetMode(gin.TestMode)
-		r := server.Router()
+		r := Router()
 		rec := httptest.NewRecorder()
 		req := httptest.NewRequest("GET", "/api/v1/healthcheck", nil)
 		r.ServeHTTP(rec, req)
