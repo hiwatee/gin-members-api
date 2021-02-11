@@ -15,7 +15,7 @@ func TestHealthCheck(t *testing.T) {
 		gin.SetMode(gin.TestMode)
 		r := Router()
 		rec := httptest.NewRecorder()
-		req := httptest.NewRequest("GET", "/api/v1/healthcheck", nil)
+		req := httptest.NewRequest(http.MethodGet, "/api/v1/healthcheck", nil)
 		r.ServeHTTP(rec, req)
 		assert.Equal(t, http.StatusOK, rec.Code)
 	})
