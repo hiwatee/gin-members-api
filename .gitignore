@@ -22,3 +22,6 @@ db_data
 
 #Mac
 .DS_Store
+
+#Other
+*.go.
